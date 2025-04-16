@@ -1,9 +1,10 @@
-
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CalendarDays, Users, Trophy } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 interface HackathonCardProps {
   id: string;
@@ -30,10 +31,20 @@ const HackathonCard: React.FC<HackathonCardProps> = ({
   status,
   tags,
 }) => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
   const statusColors = {
     upcoming: 'bg-blue-100 text-blue-800',
     active: 'bg-green-100 text-green-800',
     ended: 'bg-gray-100 text-gray-800',
+  };
+
+  const handleViewDetails = () => {
+    toast({
+      title: "Coming Soon!",
+      description: "Hackathon details page will be implemented soon.",
+    });
   };
 
   return (
@@ -84,7 +95,10 @@ const HackathonCard: React.FC<HackathonCardProps> = ({
       </CardContent>
       
       <CardFooter className="pt-2 pb-4">
-        <Button className="w-full bg-hackathon-purple hover:bg-hackathon-darkPurple text-white">
+        <Button 
+          className="w-full bg-hackathon-purple hover:bg-hackathon-darkPurple text-white"
+          onClick={handleViewDetails}
+        >
           View Details
         </Button>
       </CardFooter>

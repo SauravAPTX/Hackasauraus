@@ -1,9 +1,10 @@
 
-import React from 'react';
+import React, { useState, useCallback } from 'react';
+import { useToast } from "@/hooks/use-toast";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import HackathonSearch from '@/components/HackathonSearch';
-import HackathonFilters from '@/components/HackathonFilters';
+import HackathonFilters, { FilterStatus, CategoryType } from '@/components/HackathonFilters';
 import HackathonCard from '@/components/HackathonCard';
 import { Trophy } from 'lucide-react';
 
@@ -47,6 +48,44 @@ const HACKATHONS = [
 ];
 
 const FindHackathons = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeFilter, setActiveFilter] = useState<FilterStatus>('all');
+  const [activeCategory, setActiveCategory] = useState<CategoryType | null>(null);
+  const { toast } = useToast();
+
+  const handleSearch = useCallback((query: string) => {
+    setSearchQuery(query);
+  }, []);
+
+  const handleFilterChange = useCallback((filter: FilterStatus) => {
+    setActiveFilter(filter);
+    toast({
+      title: "Filter Updated",
+      description: `Showing ${filter} hackathons`,
+    });
+  }, [toast]);
+
+  const handleCategoryChange = useCallback((category: CategoryType) => {
+    setActiveCategory(prevCategory => prevCategory === category ? null : category);
+    toast({
+      title: "Category Updated",
+      description: `Showing ${category} hackathons`,
+    });
+  }, [toast]);
+
+  const filteredHackathons = HACKATHONS.filter(hackathon => {
+    const matchesSearch = hackathon.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         hackathon.organizer.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    const matchesFilter = activeFilter === 'all' || hackathon.status === activeFilter;
+    
+    const matchesCategory = !activeCategory || hackathon.tags.some(tag => 
+      tag.toLowerCase() === activeCategory.toLowerCase()
+    );
+
+    return matchesSearch && matchesFilter && matchesCategory;
+  });
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -67,20 +106,33 @@ const FindHackathons = () => {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Filters Sidebar */}
             <div className="lg:col-span-1">
-              <HackathonFilters />
+              <HackathonFilters
+                activeFilter={activeFilter}
+                activeCategory={activeCategory}
+                onFilterChange={handleFilterChange}
+                onCategoryChange={handleCategoryChange}
+              />
             </div>
 
             {/* Main Content */}
             <div className="lg:col-span-3">
               <div className="mb-6">
-                <HackathonSearch />
+                <HackathonSearch onSearch={handleSearch} />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                {HACKATHONS.map((hackathon) => (
-                  <HackathonCard key={hackathon.id} {...hackathon} />
-                ))}
-              </div>
+              {filteredHackathons.length === 0 ? (
+                <div className="text-center py-12">
+                  <Trophy className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">No hackathons found</h3>
+                  <p className="text-gray-500">Try adjusting your search or filters</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                  {filteredHackathons.map((hackathon) => (
+                    <HackathonCard key={hackathon.id} {...hackathon} />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

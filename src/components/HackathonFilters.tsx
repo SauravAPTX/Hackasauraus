@@ -4,29 +4,45 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Trophy, Users, Code2 } from 'lucide-react';
 
-const filters = [
-  { label: 'All', active: true },
-  { label: 'Active', active: false },
-  { label: 'Upcoming', active: false },
-  { label: 'Past', active: false },
+export type FilterStatus = 'all' | 'active' | 'upcoming' | 'past';
+export type CategoryType = 'AI & ML' | 'Web3' | 'Mobile' | 'Cloud';
+
+interface HackathonFiltersProps {
+  activeFilter: FilterStatus;
+  activeCategory: CategoryType | null;
+  onFilterChange: (filter: FilterStatus) => void;
+  onCategoryChange: (category: CategoryType) => void;
+}
+
+const filters: { label: string; value: FilterStatus }[] = [
+  { label: 'All', value: 'all' },
+  { label: 'Active', value: 'active' },
+  { label: 'Upcoming', value: 'upcoming' },
+  { label: 'Past', value: 'past' },
 ];
 
 const categories = [
-  { name: 'AI & ML', icon: Code2, count: 48 },
-  { name: 'Web3', icon: Trophy, count: 36 },
-  { name: 'Mobile', icon: Users, count: 24 },
-  { name: 'Cloud', icon: Calendar, count: 42 },
+  { name: 'AI & ML' as CategoryType, icon: Code2, count: 48 },
+  { name: 'Web3' as CategoryType, icon: Trophy, count: 36 },
+  { name: 'Mobile' as CategoryType, icon: Users, count: 24 },
+  { name: 'Cloud' as CategoryType, icon: Calendar, count: 42 },
 ];
 
-const HackathonFilters = () => {
+const HackathonFilters: React.FC<HackathonFiltersProps> = ({
+  activeFilter,
+  activeCategory,
+  onFilterChange,
+  onCategoryChange,
+}) => {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap gap-2">
         {filters.map((filter) => (
           <Badge
-            key={filter.label}
-            variant={filter.active ? "default" : "outline"}
+            key={filter.value}
+            variant={filter.value === activeFilter ? "default" : "outline"}
             className="cursor-pointer"
+            onClick={() => onFilterChange(filter.value)}
           >
             {filter.label}
           </Badge>
@@ -40,7 +56,12 @@ const HackathonFilters = () => {
             <Button
               key={category.name}
               variant="outline"
-              className="justify-start h-auto py-3 px-4 border-gray-200 hover:border-hackathon-purple hover:bg-hackathon-purple/5"
+              className={`justify-start h-auto py-3 px-4 border-gray-200 ${
+                category.name === activeCategory
+                  ? "border-hackathon-purple bg-hackathon-purple/5"
+                  : "hover:border-hackathon-purple hover:bg-hackathon-purple/5"
+              }`}
+              onClick={() => onCategoryChange(category.name)}
             >
               <div className="flex items-center w-full">
                 <div className="bg-purple-100 p-2 rounded-lg mr-3">

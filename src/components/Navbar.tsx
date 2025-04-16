@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X, Code2, Medal } from "lucide-react";
@@ -26,8 +25,11 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-4">
-              <Link to="/hackathons" className="text-gray-700 hover:text-hackathon-purple px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                Explore Hackathons
+              <Link 
+                to="/hackathons" 
+                className="text-gray-700 hover:text-hackathon-purple px-3 py-2 rounded-md text-sm font-medium transition-colors"
+              >
+                Find Hackathons
               </Link>
               <Link to="/teams" className="text-gray-700 hover:text-hackathon-purple px-3 py-2 rounded-md text-sm font-medium transition-colors">
                 Find Teams

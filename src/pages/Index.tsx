@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
@@ -7,6 +6,7 @@ import Footer from '@/components/Footer';
 import { UsersRound, Trophy, Code, Lightbulb, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import StatsCard from '@/components/StatsCard';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   return (
@@ -58,62 +58,45 @@ const Index = () => {
               />
             </div>
             
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-                <div className="mb-6">
-                  <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 mb-2">
-                    For Participants
+            <div className="grid md:grid-cols-3 gap-8 mt-12">
+              <Link to="/teams" className="block">
+                <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:border-hackathon-purple transition-all hover:shadow-md">
+                  <div className="bg-purple-100 p-3 rounded-lg w-fit mb-4">
+                    <UsersRound className="h-6 w-6 text-hackathon-purple" />
                   </div>
-                  <h3 className="text-xl font-bold mb-3">Join Exciting Hackathons</h3>
-                  <p className="text-gray-600 mb-4">
-                    Discover hackathons that match your skills and interests, form teams with like-minded individuals, and build amazing projects.
-                  </p>
-                  <ul className="space-y-2">
-                    {['Find hackathons based on skills', 'Connect with team members', 'Access problem statements and resources', 'Submit and showcase projects'].map((item, index) => (
-                      <li key={index} className="flex items-start">
-                        <div className="flex-shrink-0 h-5 w-5 rounded-full bg-green-100 flex items-center justify-center mr-2 mt-0.5">
-                          <svg className="h-3 w-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                        </div>
-                        <span className="text-gray-600">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <h3 className="text-xl font-bold mb-2">Find Teams</h3>
+                  <p className="text-gray-600 mb-4">Connect with talented developers, designers, and innovators.</p>
+                  <span className="text-hackathon-purple font-medium inline-flex items-center">
+                    Browse Teams <ArrowRight className="ml-2 h-4 w-4" />
+                  </span>
                 </div>
-                <Button className="bg-hackathon-purple hover:bg-hackathon-darkPurple text-white w-full">
-                  Find a Hackathon
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
-              
-              <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-                <div className="mb-6">
-                  <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 mb-2">
-                    For Organizers
+              </Link>
+
+              <Link to="/projects" className="block">
+                <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:border-hackathon-purple transition-all hover:shadow-md">
+                  <div className="bg-blue-100 p-3 rounded-lg w-fit mb-4">
+                    <Code className="h-6 w-6 text-blue-600" />
                   </div>
-                  <h3 className="text-xl font-bold mb-3">Host Your Own Hackathon</h3>
-                  <p className="text-gray-600 mb-4">
-                    Launch your hackathon effortlessly with our comprehensive platform, manage participants, and evaluate submissions.
-                  </p>
-                  <ul className="space-y-2">
-                    {['Easy hackathon setup and management', 'Customizable problem statements', 'Real-time analytics and insights', 'Judging and evaluation tools'].map((item, index) => (
-                      <li key={index} className="flex items-start">
-                        <div className="flex-shrink-0 h-5 w-5 rounded-full bg-blue-100 flex items-center justify-center mr-2 mt-0.5">
-                          <svg className="h-3 w-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                        </div>
-                        <span className="text-gray-600">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <h3 className="text-xl font-bold mb-2">Browse Projects</h3>
+                  <p className="text-gray-600 mb-4">Explore innovative solutions created during hackathons.</p>
+                  <span className="text-hackathon-purple font-medium inline-flex items-center">
+                    View Projects <ArrowRight className="ml-2 h-4 w-4" />
+                  </span>
                 </div>
-                <Button className="bg-hackathon-blue hover:bg-hackathon-darkBlue text-white w-full">
-                  Host a Hackathon
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
+              </Link>
+
+              <Link to="/host" className="block">
+                <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:border-hackathon-purple transition-all hover:shadow-md">
+                  <div className="bg-green-100 p-3 rounded-lg w-fit mb-4">
+                    <Trophy className="h-6 w-6 text-green-600" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">Host a Hackathon</h3>
+                  <p className="text-gray-600 mb-4">Create and manage your own hackathon event.</p>
+                  <span className="text-hackathon-purple font-medium inline-flex items-center">
+                    Get Started <ArrowRight className="ml-2 h-4 w-4" />
+                  </span>
+                </div>
+              </Link>
             </div>
           </div>
         </section>

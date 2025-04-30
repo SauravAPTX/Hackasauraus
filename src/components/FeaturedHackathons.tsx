@@ -8,11 +8,11 @@ const FEATURED_HACKATHONS = [
   {
     id: "1",
     title: "AI Innovation Challenge",
-    organizer: "TechCorp",
+    organizer: "TechCorp India",
     startDate: "Jun 1",
     endDate: "Jun 15",
     participantCount: 500,
-    prizeAmount: "$10,000",
+    prizeAmount: "₹7,50,000",
     logoUrl: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=128&h=128&fit=crop&auto=format",
     status: "active" as const,
     tags: ["AI", "Machine Learning", "Data Science"]
@@ -20,11 +20,11 @@ const FEATURED_HACKATHONS = [
   {
     id: "2",
     title: "Web3 Development Jam",
-    organizer: "Blockchain Alliance",
+    organizer: "Blockchain Alliance India",
     startDate: "Jul 5",
     endDate: "Jul 20",
     participantCount: 350,
-    prizeAmount: "$7,500",
+    prizeAmount: "₹5,60,000",
     logoUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=128&h=128&fit=crop&auto=format",
     status: "upcoming" as const,
     tags: ["Blockchain", "Web3", "Smart Contracts"]
@@ -32,11 +32,11 @@ const FEATURED_HACKATHONS = [
   {
     id: "3",
     title: "Mobile App Showdown",
-    organizer: "DevStars Academy",
+    organizer: "DevStars Academy Bengaluru",
     startDate: "May 10",
     endDate: "May 30",
     participantCount: 420,
-    prizeAmount: "$5,000",
+    prizeAmount: "₹3,75,000",
     logoUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=128&h=128&fit=crop&auto=format",
     status: "ended" as const,
     tags: ["Mobile", "UI/UX", "Flutter", "React Native"]
@@ -44,11 +44,11 @@ const FEATURED_HACKATHONS = [
   {
     id: "4",
     title: "Cloud Solutions Hackathon",
-    organizer: "CloudTech Inc.",
+    organizer: "CloudTech India",
     startDate: "Jun 20",
     endDate: "Jul 5",
     participantCount: 280,
-    prizeAmount: "$8,000",
+    prizeAmount: "₹6,00,000",
     logoUrl: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=128&h=128&fit=crop&auto=format",
     status: "upcoming" as const,
     tags: ["Cloud Computing", "DevOps", "Serverless"]

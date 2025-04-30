@@ -1,8 +1,7 @@
-
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Search, Code2, Star, GitFork, Filter, Clock, Award, DollarSign, Briefcase } from 'lucide-react';
+import { Search, Code2, Star, GitFork, Filter, Clock, Award, IndianRupee, Briefcase } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -100,7 +99,7 @@ const Projects = () => {
                   title="Mobile App UI Overhaul"
                   company="GreenTech Solutions"
                   description="Looking for a UI/UX designer to modernize our mobile app interface with focus on accessibility."
-                  bounty="$1200"
+                  bounty="₹90,000"
                   deadline="5 days"
                   tags={["UI/UX", "Mobile", "Figma"]}
                 />
@@ -108,8 +107,8 @@ const Projects = () => {
                 <BountyCard 
                   title="API Integration for Payment Gateway"
                   company="FinanceFlow"
-                  description="Need a backend developer to integrate our existing platform with multiple payment processors."
-                  bounty="$800"
+                  description="Need a backend developer to integrate our existing platform with multiple payment processors including UPI and RazorPay."
+                  bounty="₹60,000"
                   deadline="7 days"
                   tags={["Backend", "API", "Payments"]}
                 />
@@ -118,7 +117,7 @@ const Projects = () => {
                   title="Data Visualization Dashboard"
                   company="DataInsights"
                   description="Create an interactive dashboard to visualize complex user analytics data using chart libraries."
-                  bounty="$1500"
+                  bounty="₹1,12,500"
                   deadline="10 days"
                   tags={["Frontend", "Charts", "Analytics"]}
                 />
@@ -245,7 +244,7 @@ const BountyCard = ({ title, company, description, bounty, deadline, tags }: Bou
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1 text-green-700 bg-green-50 px-2 py-1 rounded-md">
-              <DollarSign className="h-4 w-4" />
+              <IndianRupee className="h-4 w-4" />
               <span className="text-sm font-medium">{bounty}</span>
             </div>
             <div className="flex items-center gap-1 text-orange-700 bg-orange-50 px-2 py-1 rounded-md">
@@ -281,4 +280,3 @@ const BountyCard = ({ title, company, description, bounty, deadline, tags }: Bou
 };
 
 export default Projects;
-

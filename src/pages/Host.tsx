@@ -1,17 +1,62 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from "@/components/ui/button";
-import { Trophy, Users, Calendar, Code2 } from 'lucide-react';
+import { Trophy, Users, Calendar, Code2, Rocket, GraduationCap, ArrowLeft } from 'lucide-react';
+import StartHostingForm from '@/components/StartHostingForm';
+import EducationalProgramForm from '@/components/EducationalProgramForm';
 
 const Host = () => {
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-grow pt-20">
-        <div className="container mx-auto px-4 py-8">
-          <div className="max-w-4xl mx-auto space-y-12">
+  const [activeView, setActiveView] = useState<'main' | 'hosting' | 'educational'>('main');
+
+  const renderContent = () => {
+    switch (activeView) {
+      case 'hosting':
+        return (
+          <div className="space-y-6">
+            <div className="flex items-center space-x-2">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={() => setActiveView('main')}
+                className="flex items-center gap-1"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                Back
+              </Button>
+              <h2 className="text-2xl font-bold">Start Hosting Your Hackathon</h2>
+            </div>
+            <p className="text-gray-600 max-w-2xl">
+              Fill out the form below to create your hackathon. Our team will review your submission and help you set up everything you need.
+            </p>
+            <StartHostingForm />
+          </div>
+        );
+      case 'educational':
+        return (
+          <div className="space-y-6">
+            <div className="flex items-center space-x-2">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={() => setActiveView('main')}
+                className="flex items-center gap-1"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                Back
+              </Button>
+              <h2 className="text-2xl font-bold">Educational Program Request</h2>
+            </div>
+            <p className="text-gray-600 max-w-2xl">
+              Our educational program is designed for schools, colleges, and universities looking to bring hackathon experiences to their students.
+            </p>
+            <EducationalProgramForm />
+          </div>
+        );
+      default:
+        return (
+          <>
             <div className="text-center space-y-4">
               <h1 className="text-4xl font-bold">Host Your Hackathon</h1>
               <p className="text-gray-600 max-w-2xl mx-auto">
@@ -42,7 +87,11 @@ const Host = () => {
                     <span className="text-gray-600">Scheduling and timeline tools</span>
                   </li>
                 </ul>
-                <Button className="w-full bg-hackathon-purple hover:bg-hackathon-darkPurple">
+                <Button 
+                  className="w-full bg-hackathon-purple hover:bg-hackathon-darkPurple"
+                  onClick={() => setActiveView('hosting')}
+                >
+                  <Rocket className="mr-2 h-4 w-4" />
                   Start Hosting
                 </Button>
               </div>
@@ -69,11 +118,28 @@ const Host = () => {
                     <span className="text-gray-600">Learning-focused features</span>
                   </li>
                 </ul>
-                <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50">
+                <Button 
+                  variant="outline" 
+                  className="w-full border-blue-600 text-blue-600 hover:bg-blue-50"
+                  onClick={() => setActiveView('educational')}
+                >
+                  <GraduationCap className="mr-2 h-4 w-4" />
                   Educational Program
                 </Button>
               </div>
             </div>
+          </>
+        );
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-grow pt-20">
+        <div className="container mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto space-y-12">
+            {renderContent()}
           </div>
         </div>
       </main>

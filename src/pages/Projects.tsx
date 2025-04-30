@@ -99,7 +99,7 @@ const Projects = () => {
                   title="Mobile App UI Overhaul"
                   company="GreenTech Solutions"
                   description="Looking for a UI/UX designer to modernize our mobile app interface with focus on accessibility."
-                  bounty="₹90,000"
+                  bounty="90,000"
                   deadline="5 days"
                   tags={["UI/UX", "Mobile", "Figma"]}
                 />
@@ -108,7 +108,7 @@ const Projects = () => {
                   title="API Integration for Payment Gateway"
                   company="FinanceFlow"
                   description="Need a backend developer to integrate our existing platform with multiple payment processors including UPI and RazorPay."
-                  bounty="₹60,000"
+                  bounty="60,000"
                   deadline="7 days"
                   tags={["Backend", "API", "Payments"]}
                 />
@@ -117,7 +117,7 @@ const Projects = () => {
                   title="Data Visualization Dashboard"
                   company="DataInsights"
                   description="Create an interactive dashboard to visualize complex user analytics data using chart libraries."
-                  bounty="₹1,12,500"
+                  bounty="1,12,500"
                   deadline="10 days"
                   tags={["Frontend", "Charts", "Analytics"]}
                 />

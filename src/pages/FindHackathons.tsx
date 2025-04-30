@@ -16,7 +16,7 @@ const HACKATHONS = [
     startDate: "Jun 1",
     endDate: "Jun 15",
     participantCount: 500,
-    prizeAmount: "$10,000",
+    prizeAmount: "₹10,000",
     logoUrl: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=128&h=128&fit=crop&auto=format",
     status: "active" as const,
     tags: ["AI", "Machine Learning", "Data Science"]
@@ -28,7 +28,7 @@ const HACKATHONS = [
     startDate: "Jul 5",
     endDate: "Jul 20",
     participantCount: 350,
-    prizeAmount: "$7,500",
+    prizeAmount: "₹7,500",
     logoUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=128&h=128&fit=crop&auto=format",
     status: "upcoming" as const,
     tags: ["Blockchain", "Web3", "Smart Contracts"]
@@ -40,7 +40,7 @@ const HACKATHONS = [
     startDate: "Jun 20",
     endDate: "Jul 5",
     participantCount: 280,
-    prizeAmount: "$8,000",
+    prizeAmount: "₹8,000",
     logoUrl: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=128&h=128&fit=crop&auto=format",
     status: "upcoming" as const,
     tags: ["Cloud Computing", "DevOps", "Serverless"]

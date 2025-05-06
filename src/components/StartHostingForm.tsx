@@ -17,6 +17,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "./auth/AuthProvider";
+import { format } from "date-fns";
+import { Loader2 } from "lucide-react";
 
 const hostingFormSchema = z.object({
   hackathonName: z.string().min(3, {
@@ -47,6 +51,8 @@ type HostingFormValues = z.infer<typeof hostingFormSchema>;
 
 const StartHostingForm = () => {
   const { toast } = useToast();
+  const { user } = useAuth();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
   
   const form = useForm<HostingFormValues>({
     resolver: zodResolver(hostingFormSchema),
@@ -62,12 +68,55 @@ const StartHostingForm = () => {
     },
   });
 
-  function onSubmit(values: HostingFormValues) {
-    console.log(values);
-    toast({
-      title: "Hackathon Created!",
-      description: `${values.hackathonName} has been created successfully.`,
-    });
+  async function onSubmit(values: HostingFormValues) {
+    if (!user) {
+      toast({
+        title: "Authentication Required",
+        description: "Please sign in to create a hackathon.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Insert hackathon data into Supabase
+      const { data, error } = await supabase.from('hackathons').insert({
+        name: values.hackathonName,
+        organization: values.organization,
+        description: values.description,
+        start_date: new Date(values.startDate).toISOString(),
+        end_date: new Date(values.endDate).toISOString(),
+        theme: values.theme,
+        prize_pool: values.prizePool,
+        visibility: values.visibility,
+        created_by: user.id,
+      }).select();
+
+      if (error) {
+        throw error;
+      }
+
+      toast({
+        title: "Hackathon Created!",
+        description: `${values.hackathonName} has been created successfully.`,
+      });
+
+      // Reset form
+      form.reset();
+      
+      console.log("Created hackathon:", data);
+    } catch (error) {
+      console.error("Error creating hackathon:", error);
+      toast({
+        title: "Error Creating Hackathon",
+        description: "There was a problem creating your hackathon. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -230,8 +279,19 @@ const StartHostingForm = () => {
             )}
           />
           
-          <Button type="submit" className="w-full bg-hackathon-purple hover:bg-hackathon-darkPurple">
-            Create Hackathon
+          <Button 
+            type="submit" 
+            className="w-full bg-hackathon-purple hover:bg-hackathon-darkPurple"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Creating...
+              </>
+            ) : (
+              "Create Hackathon"
+            )}
           </Button>
         </form>
       </Form>

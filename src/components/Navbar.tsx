@@ -48,6 +48,9 @@ const Navbar = () => {
             <Button variant="outline" size="sm">
               Sign In
             </Button>
+            <Link to="/auth" className="text-gray-700 hover:text-hackathon-purple px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                sign
+              </Link>
             <Button size="sm" className="bg-hackathon-purple hover:bg-hackathon-darkPurple text-white">
               Register
             </Button>

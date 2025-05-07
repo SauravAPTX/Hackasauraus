@@ -54,6 +54,30 @@ export type Database = {
         }
         Relationships: []
       }
+      problem_statements: {
+        Row: {
+          category: string | null
+          created_at: string
+          difficulty: string | null
+          id: string
+          statement: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          difficulty?: string | null
+          id?: string
+          statement: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          difficulty?: string | null
+          id?: string
+          statement?: string
+        }
+        Relationships: []
+      }
       projects: {
         Row: {
           demo_url: string | null

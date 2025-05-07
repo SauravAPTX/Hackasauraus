@@ -11,6 +11,7 @@ import Teams from "./pages/Teams";
 import Projects from "./pages/Projects";
 import Host from "./pages/Host";
 import AuthPage from "./pages/auth/AuthPage";
+import ProblemGenerator from "./pages/ProblemGenerator";
 import AuthProvider from "./components/auth/AuthProvider";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/projects" element={<Projects />} />
             <Route path="/host" element={<Host />} />
             <Route path="/auth" element={<AuthPage />} />
+            <Route path="/problem-generator" element={<ProblemGenerator />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

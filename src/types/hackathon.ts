@@ -41,3 +41,11 @@ export interface Project {
   demo_url: string | null;
   submitted_at: string;
 }
+
+export interface ProblemStatement {
+  id: string;
+  statement: string;
+  category: string | null;
+  difficulty: string | null;
+  created_at: string;
+}

@@ -3,7 +3,7 @@ import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import FeaturedHackathons from '@/components/FeaturedHackathons';
 import Footer from '@/components/Footer';
-import { UsersRound, Trophy, Code, Lightbulb, ArrowRight } from 'lucide-react';
+import { UsersRound, Trophy, Code, Lightbulb, ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import StatsCard from '@/components/StatsCard';
 import { Link } from 'react-router-dom';
@@ -58,7 +58,7 @@ const Index = () => {
               />
             </div>
             
-            <div className="grid md:grid-cols-3 gap-8 mt-12">
+            <div className="grid md:grid-cols-4 gap-8 mt-12">
               <Link to="/teams" className="block">
                 <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:border-hackathon-purple transition-all hover:shadow-md">
                   <div className="bg-purple-100 p-3 rounded-lg w-fit mb-4">
@@ -94,6 +94,19 @@ const Index = () => {
                   <p className="text-gray-600 mb-4">Create and manage your own hackathon event.</p>
                   <span className="text-hackathon-purple font-medium inline-flex items-center">
                     Get Started <ArrowRight className="ml-2 h-4 w-4" />
+                  </span>
+                </div>
+              </Link>
+              
+              <Link to="/problem-generator" className="block">
+                <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:border-hackathon-purple transition-all hover:shadow-md">
+                  <div className="bg-yellow-100 p-3 rounded-lg w-fit mb-4">
+                    <Sparkles className="h-6 w-6 text-yellow-600" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">Problem Generator</h3>
+                  <p className="text-gray-600 mb-4">Get inspiration with our problem statement generator.</p>
+                  <span className="text-hackathon-purple font-medium inline-flex items-center">
+                    Generate Ideas <ArrowRight className="ml-2 h-4 w-4" />
                   </span>
                 </div>
               </Link>
